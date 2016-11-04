@@ -8,13 +8,14 @@ function ad_menu()
                     array(2,'Quản lý sản phẩm',"product","star"),
 					/*array(3,"Quản lý phụ tùng","accessary","pencil"),	*/	
                     array(4,"Giới thiệu","about","fire"),
-                    array(5,'Tin tức - Sự Kiện','news','random'),  
-                    array(6,'Dự án','project','usd'),                      
-                    array(8,'Tuyển dụng','career','bell-o'),
+                    array(5,'Tin tức - Sự Kiện','news','random'),   
+                    array(6,'Thiết bị','facility','usd'),   
+                    array(7,'Dự án','project','usd'),                      
+                    array(9,'Tuyển dụng','career','bell-o'),
                     //array(9,'Video','video','youtube'),
                     /*array(14,'Hỗ trợ trực tuyến','support_online','headphones'),*/
                     //array(14,'Đặt hàng','cart','shopping-cart'),
-                    array(7,'Liên hệ','contact','plus'),                    
+                    array(8,'Liên hệ','contact','plus'),                    
                     array(11,"Pages SEO","seo","fire"),
                     array(12,"Quản lý text","qtext","music"),
                     array(15,"Cấu hình cơ bản","basic_config","cog")

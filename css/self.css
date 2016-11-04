@@ -222,6 +222,25 @@ footer{
     margin:5px 0px;
     color:#994f00
 }
+
+.ind-facility a{
+    color:#2b2b2b;
+    display:block;
+    padding:10px;
+    background:#ececec
+}
+.ind-facility a:hover{
+    background:#994f00;
+    color:#fff
+}
+.ind-facility a:hover h2{
+    color:#fff
+}
+.ind-facility a h2{
+    font-size:16px;
+    margin:5px 0px;
+    color:#994f00
+}
 .ind-news a{
     color:#929292
 }
@@ -351,6 +370,17 @@ footer{
     margin:5px 0px
 }
 .project-item:hover a h2{
+    color:#f00
+}
+.facility-item{
+    margin-bottom:20px
+}
+.facility-item a h2{
+    color:#282828;
+    font-size:16px;
+    margin:5px 0px
+}
+.facility-item:hover a h2{
     color:#f00
 }
 

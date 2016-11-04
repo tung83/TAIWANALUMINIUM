@@ -45,6 +45,10 @@
         case 'san-pham':
             echo product($db,$lang);
             break;
+        case 'thiet-bi':
+        case 'facilities':
+            echo facility($db,$lang);
+            break;
         case 'project':
         case 'du-an':
             echo project($db,$lang);

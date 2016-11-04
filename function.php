@@ -65,9 +65,9 @@ function home($db,$lang){
         <div class="container">
             <div class="row">
                 <div class="col-xs-6">';
-    common::page('project');
-    $project=new project($db,$lang);
-    $str.=$project->ind_project();
+    common::page('facility');
+    $facility=new facility($db,$lang);
+    $str.=$facility->ind_facility();
     $str.='
                 </div>
                 <div class="col-xs-6">';
@@ -190,6 +190,21 @@ function project($db,$lang){
         $str.=$project->project_one();    
     }else{
         $str.=$project->project_all();
+    }    
+    $str.='
+    </section>';
+    return $str;
+}
+function facility($db,$lang){
+    $str.='
+    <section id="page">';
+    common::page('facility');
+    $facility=new facility($db,$lang);
+    $str.=$facility->breadcrumb();
+    if(isset($_GET['id'])){
+        $str.=$facility->facility_one();    
+    }else{
+        $str.=$facility->facility_all();
     }    
     $str.='
     </section>';
@@ -342,6 +357,7 @@ function search($db,$lang){
     common::load('search','page');
     $obj = new search($db,$hint,$lang);
     $obj->add('product','Sản Phẩm','san-pham');
+    $obj->add('facility','Thiết bị','thiet-bi');
     $obj->add('project','Dự Án','du-an');
     $obj->add('career','Tuyển Dụng','tuyen-dung');
     $str.=$obj->output();
