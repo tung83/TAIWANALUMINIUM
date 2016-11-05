@@ -57,8 +57,8 @@
         case 'tuyen-dung':
             echo career($db,$lang);
             break;
-        case 'news-event':
-        case 'tin-tuc-su-kien':
+        case 'news':
+        case 'tin-tuc':
             echo news($db,$lang);
             break;
         case 'about-us':

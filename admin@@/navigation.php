@@ -8,7 +8,7 @@ function ad_menu()
                     array(2,'Quản lý sản phẩm',"product","star"),
 					/*array(3,"Quản lý phụ tùng","accessary","pencil"),	*/	
                     array(4,"Giới thiệu","about","fire"),
-                    array(5,'Tin tức - Sự Kiện','news','random'),   
+                    array(5,'Tin tức','news','random'),   
                     array(6,'Thiết bị','facility','usd'),   
                     array(7,'Dự án','project','usd'),                      
                     array(9,'Tuyển dụng','career','bell-o'),
