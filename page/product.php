@@ -236,7 +236,7 @@ class product{
     }
     function product_one($id){
         $this->db->where('id',$id);
-        $item=$this->db->getOne('product','id,price,price_reduce,title,e_title,content,e_content,pId,feature,manual,promotion,video');
+        $item=$this->db->getOne('product','id,price,price_reduce,title,e_title,content,e_content,pId,feature,e_feature,detail,e_detail,manual,promotion,video');
         $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
         $list=$this->db->get('product',5);
         $title=($this->lang=='en')?$item['e_title']:$item['title'];
