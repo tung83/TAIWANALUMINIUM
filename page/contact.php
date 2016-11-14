@@ -46,7 +46,7 @@ class contact{
                 var_dump($insert);
                 $this->db->insert('contact',$insert);                
                 //header('Location:'.$_SERVER['REQUEST_URI']);
-                echo '<script>alert("Thông tin của bạn đã được gửi đi, BQT sẽ phản hồi sớm nhất có thể, Xin cám ơn!");
+                echo '<script>alert("'.lang_contact_sucess.'");
                     location.href="'.$_SERVER['REQUEST_URI'].'"
                 </script>';
             }catch(Exception $e){
@@ -68,9 +68,9 @@ class contact{
                 <div class="row contact-wrap"> 
                     <div class="status alert alert-success" style="display: none"></div>
                     <form data-toggle="validator" role="form" class="contact-form" name="contact-form" method="post" action="">
-                        <div class="col-sm-6">
-                            Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:
-                            <p>
+                        <div class="col-sm-6">'.lang_contact_thankyou
+                            
+                            .'<p>
                                 <img src="'.selfPath.'contact.png" class="img-responsive" alt="" title=""/>
                             </p>    
                             <p>
@@ -78,11 +78,10 @@ class contact{
                             </p>       
                         </div>
                         <div class="col-sm-6">
-                            <p>
-                            Hãy điền thông tin và tin nhắn quý khách, BQT sẽ trả lời sớm nhất có thể.
-                            </p>
+                            <p>'.lang_contact_fillout
+                            .'</p>
                             <div class="form-group">
-                                <label>Họ Tên *</label>
+                                <label>'.lang_contact_fullname.'*</label>
                                 <input type="text" name="name" class="form-control" required/>
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -92,30 +91,30 @@ class contact{
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <label>Điện Thoại*</label>
+                                 <label>'.lang_contact_phone.'*</label>
                                 <input type="text" name="phone" class="form-control" required>
                             </div>   
                             <div class="form-group">
-                                <label>Địa Chỉ*</label>
+                                <label>'.lang_contact_address.'*</label>
                                 <input type="text" name="adds" class="form-control" required>
                             </div>      
                             <div class="form-group">
-                                <label>Chủ Đề *</label>
+                                <label>'.lang_contact_topic.'*</label>
                                 <input type="text" name="subject" class="form-control" required/>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <label>Nội Dung Tin Nhắn *</label>
+                                <label>'.lang_contact_message.'*</label>
                                 <textarea name="content" id="content" required class="form-control" rows="8"></textarea>
                                 <div class="help-block with-errors"></div>
                             </div>                        
                             <div class="form-group">
                                 <button type="submit" name="contact_send" class="btn btn-primary btn-md btn-custom">
-                                    Gửi Tin
-                                </button>
+                                    '.lang_contact_send
+                                .'</button>
                                 <button type="reset" name="reset" class="btn btn-primary btn-md btn-custom">
-                                    Xóa
-                                </button>
+                                    '.lang_contact_delete
+                                .'</button>
                             </div>
                         </div>
                     </form> 

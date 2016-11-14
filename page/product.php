@@ -24,20 +24,22 @@ class product{
             <li><a href="'.myWeb.$this->lang.'/'.$this->view.'">'.$this->title.'</a></li>';
         if(isset($_GET['id'])){
             $this->db->where('id',intval($_GET['id']));
-            $item=$this->db->getOne('product','id,title,pId');
-            $cate=$this->db->where('id',$item['pId'])->getOne('product_cate','id,title,pId');
+            $item=$this->db->getOne('product','id,title,e_title,pId');
+            $title=($this->lang=='en')?$item['e_title']:$item['title'];
+            $cate=$this->db->where('id',$item['pId'])->getOne('product_cate','id,title,e_title,pId');
+            $cate_title=($this->lang=='en')?$cate['e_title']:$cate['title'];
             $str.='
             <li>
-                <a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'].'">
-                '.$cate['title'].'
+                <a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($cate_title).'-p'.$cate['id'].'">
+                '.$cate_title.'
                 </a>
             </li>';
             $str.='
-            <li><a href="#">'.$item['title'].'</a></li>';
+            <li><a href="#">'.$title.'</a></li>';
         }elseif(isset($_GET['pId'])){
-            $cate=$this->db->where('id',intval($_GET['pId']))->getOne('product_cate','id,title,pId');
+            $cate=$this->db->where('id',intval($_GET['pId']))->getOne('product_cate','id,title,e_title,pId');
             $str.='           
-            <li><a href="#">'.$cate['title'].'</a></li>';
+            <li><a href="#">'.$cate_title.'</a></li>';
         }
         $str.='
         </ul>
@@ -53,13 +55,14 @@ class product{
                     <div class="your-class">';
         $list=$this->db->where('active',1)->where('home',1)->orderBy('id')->orderBy('id')->get('product');   
         foreach($list as $item){
-            $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+            $title=($this->lang=='en')?$item['e_title']:$item['title'];
+            $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
             $img=$this->first_image($item['id']);
             $str.='
             <div>
             <a href="'.$lnk.'">
                 <img src="'.webPath.$img.'" class="img-responsive center-block"/>
-                <h2 class="text-center">'.$item['title'].'</h2>
+                <h2 class="text-center">'.$title.'</h2>
             </a>
             </div>';
         }
@@ -104,15 +107,16 @@ class product{
         return $str;
     }
     function product_item($item){
-        $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $title=($this->lang=='en')?$item['e_title']:$item['title'];
+        $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         $img=$this->first_image($item['id']);
         $str.='
         <div class="col-xs-4 wow fadeInLeft product-item text-center" data-wow-duration="2s">
         <a href="'.$lnk.'">
 			<figure>
-				<img src="'.webPath.'thumb_'.$img.'" alt="'.$item['title'].'" title="'.$item['title'].'" class="img-responsive center-block">
+				<img src="'.webPath.'thumb_'.$img.'" alt="'.$title.'" title="'.$title.'" class="img-responsive center-block">
 				<figcaption class="text-center">
-					<h3>'.common::str_cut($item['title'],30).'</h3>
+					<h3>'.common::str_cut($title,30).'</h3>
 					<!--span><b>Giá bán:</b> <em>'.number_format($item['price'],0,'.','.').'VNĐ</em></span-->
 				</figcaption>
 			</figure>
@@ -121,8 +125,9 @@ class product{
         return $str;
     }
     function product_list_item($item,$type=1){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
         $img=$this->first_image($item['id']);
+        $title=($this->lang=='en')?$item['e_title']:$item['title'];
+        $lnk=myWeb.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         if(trim($img)==='') $img='holder.js/400x300';else $img=webPath.$img;
         if($type==1){
             $str='
@@ -137,7 +142,7 @@ class product{
                 <p>'.($item['price']==0?contact:number_format($item['price'],0,',','.').' VNĐ').'</p>
                 <img src="'.$img.'" class="img-responsive" />
                 <p>
-                    <h2>'.$item['title'].'</h2>
+                    <h2>'.$title.'</h2>
                     <button class="btn btn-default">'.more.'</button>
                 </p>
             </div>
@@ -156,19 +161,20 @@ class product{
     }
     function category(){
         $pId=$this->check_pId();
-        $list=$this->db->where('active',1)->orderBy('ind','ASC')->get('product_cate',null,'id,title');
+        $list=$this->db->where('active',1)->orderBy('ind','ASC')->get('product_cate',null,'id,title,e_title');
         $str='
         <div class="row product-category">
         <div class="col-xs-12">';
-        foreach($list as $item){
+        foreach($list as $item){            
+            $title=($this->lang=='en')?$item['e_title']:$item['title'];
             if($item['id']==$pId){
                 $active=' class="active"';
             }else{
                 $active='';
             }
             $str.='
-            <a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($item['title']).'-p'.$item['id'].'"'.$active.'>
-                '.$item['title'].'
+            <a href="'.myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-p'.$item['id'].'"'.$active.'>
+                '.$title.'
             </a>';
         }
         $str.='
@@ -218,7 +224,7 @@ class product{
         if($pId!=0) $this->db->where('pId',$pId);
         $this->db->where('active',1)->orderBy('id');
         $this->db->pageLimit=limit;
-        $list=$this->db->paginate('product',$page,'id,title,price,price_reduce');
+        $list=$this->db->paginate('product',$page,'id,title,e_title,price,price_reduce');
         $str='
         <div class="row">';
         foreach($list as $item){
@@ -230,10 +236,14 @@ class product{
     }
     function product_one($id){
         $this->db->where('id',$id);
-        $item=$this->db->getOne('product','id,price,price_reduce,title,content,pId,feature,manual,promotion,video');
+        $item=$this->db->getOne('product','id,price,price_reduce,title,e_title,content,e_content,pId,feature,manual,promotion,video');
         $this->db->where('pId',$item['pId'])->where('id',$item['id'],'<>')->where('active',1)->orderBy('rand()');
         $list=$this->db->get('product',5);
-        $lnk=domain.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $title=($this->lang=='en')?$item['e_title']:$item['title'];
+        $content=($this->lang=='en')?$item['e_content']:$item['content'];
+        $feature=($this->lang=='en')?$item['e_feature']:$item['feature'];
+        $detail=($this->lang=='en')?$item['e_detail']:$item['detail'];
+        $lnk=domain.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         $str.='
         <div class="row product-detail clearfix">
             <div class="col-md-5">
@@ -241,48 +251,37 @@ class product{
             </div>
             <div class="col-md-7">
                 <article class="product-one">
-                <h1>'.$item['title'].'</h1>
+                <h1>'.$title.'</h1>
                 <!--b>Giá Bán Lẻ: <em>'.number_format($item['price'],0,',','.').'VNĐ</em></b-->
                 <!--form action="javascript:add_cart('.$item['id'].',1)">
                     <button class="btn btn-default"><i class="fa fa-shopping-cart"></i> Mua Hàng</button>
                 </form-->
-                <p>'.$item['feature'].'</p>
+                <p>'.$feature.'</p>
                 </article>
             </div>
         </div>                   
         <div>
             <div id="tabs" class="tabs">
                 <ul>
-                    <li><a href="#tabs-1">MÔ TẢ CHI TIẾT</a></li>
-                    <li><a href="#tabs-2">THÔNG SỐ KỸ THUẬT</a></li>
-                    <!--li><a href="#tabs-3">GHI CHÚ</a></li>
-                    <li><a href="#tabs-4">BÌNH LUẬN</a></li-->
+                    <li><a href="#tabs-1">'.content.'</a></li>
+                    <li><a href="#tabs-2">'.detail.'</a></li>
                 </ul>
                 <div id="tabs-1">
                     <article>
-                        <p>'.$item['content'].'</p>
+                        <p>'.$content.'</p>
                     </article>
                 </div>
                 <div id="tabs-2">
                     <article>
-                        <p>'.$item['detail'].'</p>
-                    </article>
-                </div>
-                <!--div id="tabs-3">
-                    <article>
-                        <p>'.$item['manual'].'</p>
-                    </article>
-                </div>
-                <div id="tabs-4">
-                    <div class="fb-comments" data-width="100%" data-href="'.$lnk.'" data-numposts="5"></div>
-                </div-->
+                        <p>'.$detail.'</p>
+                    </article>               
             </div>       
         </div>';
         if(count($list)>0){
             $str.='
             <div class="wow fadeInDown row">
                 <h2 class="title">
-                        SẢN PHẨM CÙNG LOẠI
+                        '.sameList.' 
                 </h1>
             </div>';
            $i=1;

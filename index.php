@@ -66,7 +66,7 @@
             echo about($db,$lang);
             break;
         case 'lien-he':
-        case 'contact':
+        case 'contact-us':
             echo contact($db,$lang);
             break;
         case 'search':

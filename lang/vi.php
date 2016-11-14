@@ -19,7 +19,6 @@ define('detail_price'   ,'Giá');
 define('feature'        ,'Đặc điểm nổi bật');
 define('content'        ,'MÔ TẢ');
 define('detail'         ,'THÔNG SỐ KỸ THUẬT');
-define('teach'          ,'HƯỚNG DẪN SỬ DỤNG');
 define('contact'        ,'Liên Hệ');
 define('contact_desc'   ,'Cảm ơn Quý Khách ghé thăm website của chúng tôi.<br/>Mọi thông tin chi tiết xin vui lòng liên hệ:');
 define('pd_view'        ,'san-pham');
@@ -31,4 +30,16 @@ define('btn_send'       ,'Gửi');
 define('serv'           ,'Dịch vụ');
 define('news'           ,'Tin tức');
 define('other_article'  ,'Bài viết khác');
+define('sameList'           ,'SẢN PHẨM CÙNG LOẠI');
+define('lang_contact_thankyou'           ,'Cảm ơn Quý khách đã truy cập vào website. Mọi thông tin chi tiết xin vui lòng liên hệ:');
+define('lang_contact_fillout'           ,'Hãy điền thông tin và tin nhắn quý khách, BQT sẽ trả lời sớm nhất có thể.');
+define('lang_contact_fullname'           ,'Họ Tên');
+define('lang_contact_phone'           ,'Điện Thoại');
+define('lang_contact_address'           ,'Địa Chỉ');
+define('lang_contact_topic'           ,'Chủ Đề');
+define('lang_contact_message'           ,'Nội Dung Tin Nhắn');
+define('lang_contact_delete'           ,'Xóa');
+define('lang_contact_send'           ,'Gửi Tin');
+define('lang_contact_sucess'           ,'Thông tin của bạn đã được gửi đi, BQT sẽ phản hồi sớm nhất có thể, Xin cám ơn!');
+
 ?>
