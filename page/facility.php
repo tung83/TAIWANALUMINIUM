@@ -24,9 +24,10 @@ class facility{
             <li><a href="'.myWeb.$this->lang.'/'.$this->view.'">'.$this->title.'</a></li>';
         if(isset($_GET['id'])){
             $this->db->where('id',intval($_GET['id']));
-            $item=$this->db->getOne('facility','id,title');
+            $item=$this->db->getOne('facility','id,title,e_title');
+            $title=($this->lang=='en')?$item['e_title']:$item['title'];
             $str.='
-            <li><a href="#">'.$item['title'].'</a></li>';
+            <li><a href="#">'.$title.'</a></li>';
         }
         $str.='
         </ul>
@@ -71,7 +72,6 @@ class facility{
                 <img src="'.webPath.$item['img'].'" class="img-responsive" alt="" title=""/>
                 <p>
                     <h2>'.$title.'</h2>
-                    <span>'.common::str_cut($sum,120).'</span>
                 </p>
             </a>
             </div>';
@@ -94,12 +94,13 @@ class facility{
         return $str;
     }
     function facility_item($item){
-        $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $title=$this->lang=='vi'?$item['title']:$item['e_title'];
+        $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         $str.='        
         <div class="clearfix col-xs-4 facility-item">
             <a href="'.$lnk.'">
                 <img src="'.webPath.$item['img'].'" alt="" title=""/>
-                <h2>'.$item['title'].'</h2>
+                <h2>'.$title.'</h2>
             </a>
         </div>';
         return $str;
@@ -195,12 +196,13 @@ class facility{
     }
     
     function one_ind_facility($item){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $title=$this->lang=='vi'?$item['title']:$item['e_title'];
+        $lnk=myWeb.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         $str='
         <div class="ind-facility">
             <a href="'.$lnk.'">
                 <img src="'.webPath.$item['img'].'" alt="" title="'.$item['title'].'"/>
-                <h2>'.$item['title'].'</h2>
+                <h2>'.$title.'</h2>
             </a>
         </div>';
         return $str;

@@ -24,15 +24,19 @@ class news{
             <li><a href="'.myWeb.$this->view.'">'.$this->title.'</a></li>';
         if(isset($_GET['id'])){
             $this->db->where('id',intval($_GET['id']));
-            $item=$this->db->getOne('news','id,title,pId');
-            $cate=$this->db->where('id',$item['pId'])->getOne('news_cate','id,title');
+            
+            $item=$this->db->getOne('news','id,title,e_title,pId');
+            $title=($this->lang=='en')?$item['e_title']:$item['title'];
+            $cate=$this->db->where('id',$item['pId'])->getOne('news_cate','id,title,e_title');
+            $cate_title=($this->lang=='en')?$cate['e_title']:$cate['title'];
             $str.='
-            <li><a href="'.myWeb.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'].'">'.$cate['title'].'</a></li>
-            <li><a href="#">'.$item['title'].'</a></li>';
+            <li><a href="'.myWeb.$this->view.'/'.common::slug($cate_title).'-p'.$cate['id'].'">'.$cate_title.'</a></li>
+            <li><a href="#">'.$title.'</a></li>';
         }elseif(isset($_GET['pId'])){
-            $cate=$this->db->where('id',intval($_GET['pId']))->getOne('news_cate','id,title');
+            $cate=$this->db->where('id',intval($_GET['pId']))->getOne('news_cate','id,title,e_title');
+            $cate_title=($this->lang=='en')?$cate['e_title']:$cate['title'];
             $str.='
-            <li><a href="#">'.$cate['title'].'</a></li>';
+            <li><a href="#">'.$cate_title.'</a></li>';
         }
         $str.='
         </div>
@@ -47,18 +51,18 @@ class news{
             <div class="col-xs-12">
             <h2 class="title">'.$this->title.'</h2>';
         foreach($list as $item){
-            $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+            $title=($this->lang=='en')?$item['e_title']:$item['title'];
+            $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
             $img=webPath.$item['img'];
             if($img=='') $img='holder.js/126x100';
             $str.='
             <div class="row ind-news">
                 <a href="'.$lnk.'">
                     <div class="col-xs-4">
-                        <img src="'.$img.'" alt="'.$item['title'].'" class="img-responsive"/>
+                        <img src="'.$img.'" alt="'.$title.'" class="img-responsive"/>
                     </div>
                     <div class="col-xs-8">
-                        <h2>'.common::str_cut($item['title'],30).'</h2>
-                        <span>'.nl2br(common::str_cut($item['sum'],160)).'</span>
+                        <h2>'.common::str_cut($title,30).'</h2>
                     </div>
                 </a>
             </div>';   
@@ -72,13 +76,15 @@ class news{
         return $str;
     }
     function news_item($item){
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $title=($this->lang=='en')?$item['e_title']:$item['title'];
+        $sum=($this->lang=='en')?$item['e_sum']:$item['sum'];
+        $lnk=myWeb.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         $str.='
         <a href="'.$lnk.'" class="about-item clearfix">
             <img src="'.webPath.$item['img'].'" class="img-responsive" alt="" title=""/>
             <div>
-                <h2>'.$item['title'].'</h2>
-                <span>'.nl2br(common::str_cut($item['sum'],620)).'</span>
+                <h2>'.$title.'</h2>
+                <span>'.nl2br(common::str_cut($sum,620)).'</span>
             </div>
         </a>';
         return $str;
@@ -102,9 +108,10 @@ class news{
         if($pId==0){
             $pg->set_url(array('def'=>myWeb.$this->view,'url'=>myWeb.'[p]/'.$this->view));
         }else{
-            $cate=$this->db->where('id',$pId)->getOne('news_cate','id,title');       
-            $pg->defaultUrl = myWeb.$this->view.'/'.common::slug($cate['title']).'-p'.$cate['id'];
-            $pg->paginationUrl = myWeb.$this->view.'/[p]/'.common::slug($cate['title']).'-p'.$cate['id'];
+            $cate=$this->db->where('id',$pId)->getOne('news_cate','id,title,e_title');    
+            $cate_title=($this->lang=='en')?$cate['e_title']:$cate['title'];   
+            $pg->defaultUrl = myWeb.$this->view.'/'.common::slug($cate_title).'-p'.$cate['id'];
+            $pg->paginationUrl = myWeb.$this->view.'/[p]/'.common::slug($cate_title).'-p'.$cate['id'];
         }
         $str.= '<div class="pagination-centered">'.$pg->process().'</div>';
         return $str;
@@ -112,9 +119,10 @@ class news{
     function news_one(){
         $id=1;
         $item=$this->db->where('id',$id)->getOne('news');
+        $title=($this->lang=='en')?$item['e_title']:$item['title'];
         $str='
         <article class="article">
-            <h1 class="article">'.$item['title'].'</h1>
+            <h1 class="article">'.$title.'</h1>
             <p>'.$item['content'].'</p>
         </article>';
         return $str;
@@ -123,14 +131,16 @@ class news{
     function one_ind_news($id){
         $this->db->reset();
         $this->db->where('id',$id);
-        $item=$this->db->getOne('news','id,img,title,sum');
-        $lnk=myWeb.$this->view.'/'.common::slug($item['title']).'-i'.$item['id'];
+        $item=$this->db->getOne('news','id,img,title,e_title,sum,e_sum');
+        $title=($this->lang=='en')?$item['e_title']:$item['title'];
+        $sum=($this->lang=='en')?$item['e_sum']:$item['sum'];
+        $lnk=myWeb.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         $str='
         <div class="ind_news">
             <a href="'.$lnk.'">
-                <img src="'.webPath.$item['img'].'" alt="" title="'.$item['title'].'"/>
-                <h2>'.$item['title'].'</h2>
-                <span>'.common::str_cut($item['sum'],120).'</span>
+                <img src="'.webPath.$item['img'].'" alt="" title="'.$title.'"/>
+                <h2>'.$title.'</h2>
+                <span>'.common::str_cut($sum,120).'</span>
             </a>
         </div>';
         return $str;

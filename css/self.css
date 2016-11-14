@@ -169,9 +169,6 @@ footer{
 .menu li:nth-child(1) a{
     border-radius:5px 0px 0px 5px
 }
-.menu li:nth-child(4){
-    width: 1.2%;    
-}
 .menu li:last-child{
     border-right:none
 }

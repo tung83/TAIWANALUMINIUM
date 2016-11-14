@@ -38,6 +38,7 @@ class product{
             <li><a href="#">'.$title.'</a></li>';
         }elseif(isset($_GET['pId'])){
             $cate=$this->db->where('id',intval($_GET['pId']))->getOne('product_cate','id,title,e_title,pId');
+            $cate_title=($this->lang=='en')?$cate['e_title']:$cate['title'];
             $str.='           
             <li><a href="#">'.$cate_title.'</a></li>';
         }
