@@ -10,11 +10,11 @@
     <?=common::basic_js()?>
 </head>
 <body>
-    <header>
+    <header class="<?=$view?>">
         <div class="container">
             <div class="row logo-and-some-content">
                 <div class="col-xs-3">
-                    <a href="<?=myWeb?>"><img src="<?=selfPath?>logo.png" alt="" title=""/></a>
+                    <a href="<?=myWeb.$lang?>"><img src="<?=selfPath?>logo.png" alt="" title=""/></a>
                 </div>
                 <div class="col-xs-9">
                     <div class="clearfix">

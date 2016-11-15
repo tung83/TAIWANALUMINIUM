@@ -5,7 +5,9 @@ body{
     line-height:19px;
     background:url(/file/self/background.jpg) no-repeat top center
 }
-
+header:not(.home):not(.trang-chu){
+    background: url(/file/self/background.jpg) no-repeat center center;
+}
 a:hover{
     text-decoration:none
 }
