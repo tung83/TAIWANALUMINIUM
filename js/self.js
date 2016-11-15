@@ -1,7 +1,7 @@
 $(function(){
     new WOW().init();
     $( "#tabs" ).tabs();
-    $("body").append('<a href="#" class="scrollTo-top" style="display: inline;"><i class="fa fa-angle-double-up"></i></a>');
+    $("body").append('<a href="#" class="scrollTo-top"><i class="fa fa-angle-double-up"></i></a>');
     var viewPortWidth = $(window).width();
     $(window).scroll(function(event) {
         event.preventDefault();
