@@ -55,7 +55,7 @@ class facility{
         $list=$this->db->where('active',1)->orderBy('ind','ASC')->orderBy('id')->get('facility',4);
         $str.='
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 ind-facility-list">
                 <h2 class="title">'.$this->title.'</h2>';
         $i=1;
         foreach($list as $item){
@@ -67,7 +67,7 @@ class facility{
             $sum=$this->lang=='vi'?$item['sum']:$item['e_sum'];
             $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
             $str.='
-            <div class="ind-facility col-xs-6">
+            <div class="ind-facility wow fadeIn animated col-xs-6">
             <a href="'.$lnk.'">
                 <img src="'.webPath.$item['img'].'" class="img-responsive" alt="" title=""/>
                 <p>
@@ -97,7 +97,7 @@ class facility{
         $title=$this->lang=='vi'?$item['title']:$item['e_title'];
         $lnk=myWeb.$this->lang.'/'.$this->view.'/'.common::slug($title).'-i'.$item['id'];
         $str.='        
-        <div class="clearfix col-xs-4 facility-item">
+        <div class="clearfix col-xs-4 wow bounceIn animated facility-item">
             <a href="'.$lnk.'">
                 <img src="'.webPath.$item['img'].'" alt="" title=""/>
                 <h2>'.$title.'</h2>

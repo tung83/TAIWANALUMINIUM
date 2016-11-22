@@ -62,7 +62,7 @@ class product{
             $str.='
             <div>
             <a href="'.$lnk.'">
-                <img src="'.webPath.$img.'" class="img-responsive center-block"/>
+                <img src="'.webPath.$img.'" class="img-responsive center-block hvr-grow"/>
                 <h2 class="text-center">'.$title.'</h2>
             </a>
             </div>';
@@ -115,7 +115,7 @@ class product{
         <div class="col-xs-4 wow fadeInLeft product-item text-center" data-wow-duration="2s">
         <a href="'.$lnk.'">
 			<figure>
-				<img src="'.webPath.'thumb_'.$img.'" alt="'.$title.'" title="'.$title.'" class="img-responsive center-block">
+				<img src="'.webPath.'thumb_'.$img.'" alt="'.$title.'" title="'.$title.'" class="img-responsive center-block  hvr-grow">
 				<figcaption class="text-center">
 					<h3>'.common::str_cut($title,30).'</h3>
 					<!--span><b>Giá bán:</b> <em>'.number_format($item['price'],0,'.','.').'VNĐ</em></span-->

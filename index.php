@@ -5,7 +5,7 @@
     <meta name="description" content=""/>
     <meta name="author" content=""/>
     <title>.:Taiwan Aluminium:.</title>
-	<link rel="icon" type="image/png" href="<?=selfPath?>logo.png"/>   
+	<link rel="icon" type="image/png" href="<?=selfPath?>logo2.png"/>   
     <?=common::basic_css()?> 
     <?=common::basic_js()?>
 </head>
@@ -79,30 +79,34 @@
     }
     ?>
     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-9">
-                    <?=foot_menu($db,$lang,$view)?>
-                </div>
-                <div class="col-xs-3">
-                    <div class="social pull-right">
-                        <a href=""><i class="fa fa-twitter"></i></a>
-                        <a href=""><i class="fa fa-facebook"></i></a>
-                        <a href=""><i class="fa fa-google-plus"></i></a>
-                    </div>     
-                </div>
-            </div>
-            <hr class="divider divider-custom"/>
-            <div class="row">
-                <div class="col-xs-8 copyright">
-                    Copyright © 2016 <b>TAIWANALUMINIUM</b>. All Rights Reserved. Designed by <a>PSmedia.vn</a>
-                </div>
-                <div class="col-xs-4 text-right">
-                <?php
-                common::load('class.visitors');
-                $vs=new visitors($db);
-                ?>
-                    Online: <?=$vs->getOnlineVisitors()?> || Counter: <?=$vs->getCounter()?>
+        <div class="container">            
+            <div class="row">  
+                <div id="footer-wrapper">                    
+                    <div id="footer-wrapper-bg"></div>
+                    <div class="row">                
+                        <div class="col-xs-9">
+                            <?=foot_menu($db,$lang,$view)?>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="social pull-right">
+                                <a href=""><i class="fa fa-twitter"></i></a>
+                                <a href=""><i class="fa fa-facebook"></i></a>
+                                <a href=""><i class="fa fa-google-plus"></i></a>
+                            </div>     
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 copyright">
+                            Copyright © 2016 <b>TAIWANALUMINIUM</b>. All Rights Reserved. Designed by <a>PSmedia.vn</a>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                        <?php
+                        common::load('class.visitors');
+                        $vs=new visitors($db);
+                        ?>
+                            Online: <?=$vs->getOnlineVisitors()?> || Counter: <?=$vs->getCounter()?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

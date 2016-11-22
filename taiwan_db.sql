@@ -72,9 +72,7 @@ CREATE TABLE IF NOT EXISTS `ad_user` (
 --
 
 INSERT INTO `ad_user` (`id`, `email`, `pwd`, `power`, `lastOnl`) VALUES
-(1, 'czanubis@gmail.com', '949530644ef43dad3857cf6fbbbe10c1', 1, '2016-01-24 03:46:26'),
-(4, 'dragoncvics@yahoo.com.vn', '900150983cd24fb0d6963f7d28e17f72', 1, '2016-03-11 03:23:34'),
-(10, 'nhatsang@gmail.com', '202cb962ac59075b964b07152d234b70', 1, '2016-03-12 03:53:10');
+(1, 'nhatsang@gmail.com', '202cb962ac59075b964b07152d234b70', 1, '2016-03-12 03:53:10');
 
 -- --------------------------------------------------------
 
