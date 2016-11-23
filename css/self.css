@@ -10,6 +10,35 @@ body{
 a:hover{
     text-decoration:none
 }
+.ui-widget-content {
+     background: transparent;
+     border: 0px;
+ }
+ .ui-widget-header {
+     background: transparent;
+     border: 0px;
+     border-bottom: 1px solid #4c97c4;
+     border-radius: 0;
+ }
+ .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+     border-bottom: 0;
+ }
+ .ui-tabs .ui-tabs-nav li:focus,.ui-tabs .ui-tabs-nav li a:focus {
+     outline: none;
+ }
+ .ui-tabs-panel  {
+     border: 1px solid #4c97c4 !important;
+     border-top: 0px !important;
+ }
+ .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+     color: #767676;
+ }
+ .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+     border: 1px solid #4c97c4;
+     color: #4c97c4;
+ }.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+     color: #4c97c4;
+ }
 .scrollTo-top {
     display: none;
     position: fixed;

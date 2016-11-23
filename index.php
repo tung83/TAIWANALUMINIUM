@@ -95,6 +95,10 @@
                             </div>     
                         </div>
                     </div>
+                    <hr style="
+                        border-color: #444;
+                        margin: 10px -10px 10px -10px;
+                    ">
                     <div class="row">
                         <div class="col-xs-8 copyright">
                             Copyright © 2016 <b>TAIWANALUMINIUM</b>. All Rights Reserved. Designed by <a>PSmedia.vn</a>
